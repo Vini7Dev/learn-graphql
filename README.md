@@ -21,7 +21,17 @@
 - [Type]
   *Example: [Int]*
 
-**Handling Response:**
+# Complex Types
+
+**Object Types:**
+```graphql
+type TypeName {
+  attr1: ID!
+  attr2: [String]
+  ...
+}
+```
+
+# Handling Response:
 - field: Type! (Not null)
-  *Example: name: String!*
 - field: [Type!]! (Not null and no elements null)
