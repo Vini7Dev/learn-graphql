@@ -35,3 +35,10 @@ type TypeName {
 # Handling Response:
 - field: Type! (Not null)
 - field: [Type!]! (Not null and no elements null)
+
+# Send Agruments
+```graphql
+extend type Query {
+  user(user_id: ID!): User
+}
+```
