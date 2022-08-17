@@ -1,7 +1,7 @@
-const post = () => ({ id: '32123gfd', title: 'Post Title', text: 'Post text' });
+const post = () => ({ id: '32123gfd', title: 'Post Title', body: 'Post body' });
 
 const posts = () => [
-  { id: '32123gfd', title: 'Post Title', text: 'Post text' },
+  { id: '32123gfd', title: 'Post Title', body: 'Post body' },
 ];
 
 export const postResolvers = {
