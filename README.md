@@ -92,18 +92,24 @@ query {
 
 # Using Union Types
 ```graphql
-query($postId: ID! = "8600") {
+query($postId: ID! = "860") {
   post(post_id: $postId) {
-    __typename
-
     ... on Post {
       id
       title
     }
 
-    ... on PostNotFoundError {
+    ... on PostError {
       statusCode
       message
+      
+      ... on PostNotFoundError {
+        postId
+      }
+
+      ... on PostTimeoutError {
+        timeout
+      }
     }
   }
 }
