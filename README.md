@@ -57,3 +57,17 @@ query getUser($user_id: ID!) {
   "user_id": 777
 }
 ```
+
+# Query Aliases
+```graphql
+query {
+  aliasA: post(post_id: "341") {
+    aliasAA_id
+    title
+  }
+  aliasB: post(post_id: "342") {
+    alias_BB: id
+    title
+  }
+}
+```
