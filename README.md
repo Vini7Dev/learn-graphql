@@ -89,3 +89,22 @@ query {
   }
 }
 ```
+
+# Using Union Types
+```graphql
+query($postId: ID! = "8600") {
+  post(post_id: $postId) {
+    __typename
+
+    ... on Post {
+      id
+      title
+    }
+
+    ... on PostNotFoundError {
+      statusCode
+      message
+    }
+  }
+}
+```

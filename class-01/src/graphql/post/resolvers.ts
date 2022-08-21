@@ -3,8 +3,12 @@ const post = async (
   { post_id }: { post_id: string },
   { getPosts }: any,
 ) => {
-  const post = await getPosts(post_id);
-  return post.json();
+  const response = await getPosts(post_id);
+  const postData = await response.json();
+
+  if (!postData.id) return { statusCode: 404, message: 'Post not found!' };
+
+  return postData;
 };
 
 const posts = async (_: any, { input }: any, { getPosts }: any) => {
@@ -22,6 +26,13 @@ export const postResolvers = {
     unixTimestamp: (parent: any) => {
       const timestamp = new Date(parent.createdAt).getTime() / 1000;
       return Math.floor(timestamp);
+    },
+  },
+  PostResult: {
+    __resolveType: (obj: any) => {
+      if (typeof obj.statusCode !== 'undefined') return 'PostNotFoundError';
+      if (typeof obj.id !== 'undefined') return 'Post';
+      return null;
     }
   }
 };
