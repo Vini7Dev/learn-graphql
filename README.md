@@ -71,3 +71,21 @@ query {
   }
 }
 ```
+
+# Query Fragments
+```graphql
+fragment postFragment on Post {
+  id
+  title
+  body
+}
+
+query {
+  post1: post(post_id: "123") {
+    ...postFragment
+  }
+  post2: post(post_id: "321") {
+    ...postFragment
+  }
+}
+```
