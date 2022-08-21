@@ -9,8 +9,9 @@ const user = async (
   return user.json();
 };
 
-const users = async (_: any, __: any, { getUsers }: any) => {
-  const users = await getUsers();
+const users = async (_: any, { input }: any, { getUsers }: any) => {
+  const apiFiltersInput = `?${new URLSearchParams(input)}`
+  const users = await getUsers(apiFiltersInput);
   return users.json();
 };
 

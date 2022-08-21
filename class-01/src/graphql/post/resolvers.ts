@@ -7,8 +7,9 @@ const post = async (
   return post.json();
 };
 
-const posts = async (_: any, __: any, { getPosts }: any) => {
-  const posts = await getPosts();
+const posts = async (_: any, { input }: any, { getPosts }: any) => {
+  const apiFiltersInput = `?${new URLSearchParams(input)}`
+  const posts = await getPosts(apiFiltersInput);
   return posts.json();
 };
 
