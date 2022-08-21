@@ -62,7 +62,7 @@ query getUser($user_id: ID!) {
 ```graphql
 query {
   aliasA: post(post_id: "341") {
-    aliasAA_id
+    aliasAA: id
     title
   }
   aliasB: post(post_id: "342") {
