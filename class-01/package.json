@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^3.10.1",
+    "dataloader": "^2.1.0",
     "graphql": "^16.5.0",
     "json-server": "^0.17.0",
     "node-fetch": "2.6.6"
