@@ -19,6 +19,12 @@ const posts = async (_: any, { input }: any, { getPosts }: any) => {
   return posts.json();
 };
 
+const user = async ({ userId }: any, _: any, { getUsers }: any) => {
+  const user = await getUsers(userId)
+
+  return user.json()
+}
+
 export const postResolvers = {
   Query: {
     post,
@@ -29,6 +35,7 @@ export const postResolvers = {
       const timestamp = new Date(parent.createdAt).getTime() / 1000;
       return Math.floor(timestamp);
     },
+    user,
   },
   PostResult: {
     __resolveType: (obj: any) => {
