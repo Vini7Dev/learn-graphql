@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server';
 
 import { typeDefs, resolvers } from './graphql/schema';
-import { context } from './context';
+import { context } from './graphql/context';
 
 const SERVER_PORT = 4003;
 
