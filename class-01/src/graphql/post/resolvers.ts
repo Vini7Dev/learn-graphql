@@ -1,17 +1,3 @@
-import DataLoader from 'dataloader'
-import fetch from 'node-fetch'
-
-const userDataLoader = new DataLoader(async (ids: string[]) => {
-  const urlQuery = ids.join('&id=');
-
-  const url = `http://localhost:3000/users/?id=${urlQuery}`
-
-  const response = await fetch(url)
-  const users = await response.json() as any[]
-
-  return ids.map(id => users.find(user => user.id === id));
-})
-
 const post = async (
   _: any,
   { post_id }: { post_id: string },
@@ -33,7 +19,7 @@ const posts = async (_: any, { input }: any, { getPosts }: any) => {
   return posts.json();
 };
 
-const user = async ({ userId }: any, _: any, { getUsers }: any) => {
+const user = async ({ userId }: any, _: any, { userDataLoader }: any) => {
   return userDataLoader.load(userId)
 }
 

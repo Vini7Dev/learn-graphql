@@ -22,7 +22,7 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules -r dotenv/config src/index.ts",
     "server": "json-server --watch db.json"
   }
 }

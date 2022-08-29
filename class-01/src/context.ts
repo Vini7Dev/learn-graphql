@@ -1,9 +1,13 @@
 import fetch from 'node-fetch';
 
-const BASE_URL = 'http://localhost:3000';
+import { makeUserDataLoader } from './graphql/user/dataloaders';
+import { getUsers } from './graphql/user/utils';
+
+const BASE_URL = process.env.BASE_URL;
 
 export const context = () => ({
   fetch,
-  getUsers: (path: string) => fetch(`${BASE_URL}/users/${path ? path : ''}`),
+  userDataLoader: makeUserDataLoader(getUsers(fetch)),
+  getUsers: getUsers(fetch),
   getPosts: (path: string) => fetch(`${BASE_URL}/posts/${path ? path : ''}`),
 });
