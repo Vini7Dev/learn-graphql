@@ -1,10 +1,9 @@
 const post = async (
   _: any,
   { post_id }: { post_id: string },
-  { getPosts }: any,
+  { dataSources: { postsApi } }: any,
 ) => {
-  const response = await getPosts(post_id);
-  const postData = await response.json();
+  const postData = await postsApi.getPosts(post_id);
 
   if (Math.random() <= 0.3) return { statusCode: 400, message: 'Timeout error', timeout: 123 }
 
@@ -13,10 +12,9 @@ const post = async (
   return postData;
 };
 
-const posts = async (_: any, { input }: any, { getPosts }: any) => {
+const posts = async (_: any, { input }: any, { dataSources: { postsApi } }: any) => {
   const apiFiltersInput = `?${new URLSearchParams(input)}`
-  const posts = await getPosts(apiFiltersInput);
-  return posts.json();
+  return postsApi.getPosts(apiFiltersInput);
 };
 
 const user = async ({ userId }: any, _: any, { userDataLoader }: any) => {
