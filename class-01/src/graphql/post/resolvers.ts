@@ -1,7 +1,7 @@
 const post = async (
   _: any,
   { post_id }: { post_id: string },
-  {  { dataSources: { postsApi } }: any,
+  { dataSources: { postsApi } }: any,
 ) => {
   const postData = await postsApi.getPosts(post_id);
 
@@ -48,4 +48,4 @@ export const postResolvers = {
       return null;
     }
   }
-]
+};

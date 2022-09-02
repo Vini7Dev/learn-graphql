@@ -4,11 +4,10 @@ export const makePostDataLoader = (getPosts: any) => {
   return new DataLoader(async (ids: string[]) => {
     const urlQuery = ids.join('&userId=');
     
-    const response = await getPosts('?userId=' + urlQuery);
-    const posts = await response.json() as any[];
+    const posts = await getPosts('?userId=' + urlQuery);
 
     return ids.map((id) => {
-      return posts.filter((post) => post.userId === id);
+      return posts.filter((post: any) => post.userId === id);
     });
   });
 };

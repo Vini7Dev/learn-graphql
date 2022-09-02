@@ -17,8 +17,8 @@ const users = async (_: any, { input }: any, { getUsers }: any) => {
   return users.json();
 };
 
-const posts = ({ id }: any, _: any, { postDataLoader }: any) => {
-  return postDataLoader.load(id)
+const posts = ({ id }: any, _: any, { dataSources }: any) => {
+  return dataSources.postApi.batchLoadByUserId(id);
 };
 
 export const userResolvers = {
