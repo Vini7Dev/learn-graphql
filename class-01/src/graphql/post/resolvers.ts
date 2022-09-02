@@ -17,8 +17,8 @@ const posts = async (_: any, { input }: any, { dataSources: { postsApi } }: any)
   return postsApi.getPosts(apiFiltersInput);
 };
 
-const user = async ({ userId }: any, _: any, { userDataLoader }: any) => {
-  return userDataLoader.load(userId)
+const user = async ({ userId }: { userId: string }, _: any, { dataSources }: any) => {
+  return dataSources.usersApi.batchLoadById(userId)
 }
 
 export const postResolvers = {

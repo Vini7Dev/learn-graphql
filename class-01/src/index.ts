@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server';
 import { typeDefs, resolvers } from './graphql/schema';
 import { context } from './graphql/context';
 import { PostsApi } from './graphql/post/datasources';
+import { UsersApi } from './graphql/user/datasources';
 
 const SERVER_PORT = 4003;
 
@@ -13,6 +14,7 @@ const server = new ApolloServer({
   dataSources: () => {
     return {
       postsApi: new PostsApi(),
+      usersApi: new UsersApi(),
     }
   }
 });
