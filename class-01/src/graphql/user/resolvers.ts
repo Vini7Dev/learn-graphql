@@ -1,24 +1,15 @@
-const user = async (
-  _parent: any,
-  { user_id }: { user_id: string },
-  { getUsers }: any,
-) => {
-  const response = await getUsers(user_id);
-  const userData = await response.json()
-
-  if (!userData.id) return { statusCode: 404, message: 'User not found!' };
-
-  return userData;
+const user = async (_, { id }: { id: string }, { dataSources }: any) => {
+  const user = await dataSources.usersApi.getUser(id);
+  return user;
 };
 
-const users = async (_: any, { input }: any, { getUsers }: any) => {
-  const apiFiltersInput = `?${new URLSearchParams(input)}`
-  const users = await getUsers(apiFiltersInput);
-  return users.json();
+const users = async (_: any, { input }: any, { dataSources }: any) => {
+  const users = await dataSources.usersApi.getUsers(input);
+  return users;
 };
 
-const posts = ({ id }: any, _: any, { postDataLoader }: any) => {
-  return postDataLoader.load(id)
+const posts = ({ id }: any, _: any, { dataSources }: any) => {
+  return dataSources.postsApi.batchLoadByUserId(id);
 };
 
 export const userResolvers = {
